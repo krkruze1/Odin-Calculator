@@ -1,13 +1,50 @@
 <!DOCTYPE html>
 <html lang= 'en'>
     <head>
-    <meta charset = "UTF-8">
-    <title>TOP Calculator</title>
-    <script src = "calculator.js" defer></script>
+        <meta charset = "UTF-8">
+        <title>TOP Calculator</title>
+        <link rel="stylesheet" href="styles.css">
+        <script src = "calculator.js" defer></script>
     </head>
     <body>
-        <div id = "container">
-
+        <div id = "background">
+            <div id = "container">
+                <div id = "screen">
+                    <div id = "history">History</div>
+                    <div id = "input">Result</div>
+                </div>
+                <div id = "buttons">
+                    <div class = "row">   
+                        <div class = "action" id = "clearAll"><button type ="button">AC</button></div>
+                        <div class = "action" id = "clearEntry"><button type ="button">CE</button></div>
+                        <div class = "action" id = "delete"><button type ="button">DEL</button></div>    
+                    </div>                    
+                    <div class = "row">   
+                        <div class = "number" id = "one"><button type ="button">1</button></div>
+                        <div class = "number" id = "two"><button type ="button">2</button></div>
+                        <div class = "number" id = "three"><button type ="button">3</button></div>
+                        <div class = "operator" id = "divide"><button type ="button">/</button></div>
+                    </div>
+                    <div class = "row">
+                        <div class = "number" id = "four"><button type ="button">4</button></div>
+                        <div class = "number" id = "five"><button type ="button">5</button></div>
+                        <div class = "number" id = "six"><button type ="button">6</button></div>
+                        <div class = "operator" id = "multiply"><button type ="button">*</button></div>
+                    </div>
+                    <div class = "row">
+                        <div class = "number" id = "seven"><button type ="button">7</button></div>
+                        <div class = "number" id = "eight"><button type ="button">8</button></div>
+                        <div class = "number" id = "nine"><button type ="button">9</button></div>
+                        <div class = "operator" id = "subtract"><button type ="button">-</button></div>
+                    </div>
+                    <div class = "row">
+                        <div class = "tool" id = "decimal"><button type ="button">.</button></div>
+                        <div class = "number" id = "zero"><button type ="button">0</button></div>
+                        <div class = "operator" id = "equals"><button type ="button">=</button></div>
+                        <div class = "operator" id = "add"><button type ="button">+</button></div>
+                    </div>
+                </div>
+            </div>
         </div>
     </body>
 </html>
