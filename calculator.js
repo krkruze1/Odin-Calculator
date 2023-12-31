@@ -18,7 +18,6 @@ const division = (a,b) => a / b;
 //Operation
 let input1 = 0;
 let input2 = 0;
-let result = 0;
 let operator;
 let answer = 0;  
 function operate(){
@@ -36,7 +35,7 @@ function operate(){
 //Number Buttons and decimal point
 //on click add digit to main screen input
 
-let numBtns = document.querySelectorAll('.number')
+let numBtns = document.querySelectorAll('.number');
 
 numBtns.forEach((btn) => {
     btn.addEventListener('click', () => {
@@ -53,7 +52,8 @@ numBtns.forEach((btn) => {
 //2. replace inputs screen with input 1 with operator 
 //3. clear main screen input
 //4. set operation
-let opBtns = document.querySelectorAll('.operator')
+
+let opBtns = document.querySelectorAll('.operator');
 
 opBtns.forEach((btn) => {
     btn.addEventListener('click', () => {
@@ -64,10 +64,10 @@ opBtns.forEach((btn) => {
         operator = btn.id;
     });
 });
-//
+
 //Equals
 //on click run operate
-let eqBtn = document.querySelector('#equals')
+let eqBtn = document.querySelector('#equals');
 
 eqBtn.addEventListener('click', () =>{
     input2 = mainScreen.textContent;
@@ -76,18 +76,48 @@ eqBtn.addEventListener('click', () =>{
     answer = 1;
 });
 
-
 //System Operations
 //All Clear
 //on click
-//1. let input 1=0
+//1. let inputs=0
 //2. let main screen input=0
 //3. clear inputs screen
 //4. clear main screen 
 
+let acBtn = document.querySelector('#clearAll');
+
+acBtn.addEventListener('click', () =>{
+    mainScreen.textContent = '';
+    inputs.textContent = '';
+    input1 = 0;
+    input2 = 0;
+    answer = 0;
+    operator = '';
+});
+
 //Clear Entry
 //on click clear main screen 
+let ceBtn = document.querySelector('#clearEntry');
+
+ceBtn.addEventListener('click', () =>{
+    mainScreen.textContent = '';
+});
 
 //Delete
 //on click remove last digit from main screen
 
+let delBtn = document.querySelector('#delete');
+
+delBtn.addEventListener('click', () =>{
+    mainScreen.textContent = mainScreen.textContent.slice(0,(mainScreen.textContent.length - 1));
+});
+
+
+//Switch Sign
+// on click main screen input shanges from positive to negative and vice versa
+
+let signBtn = document.querySelector('#switchSign')
+
+signBtn.addEventListener('click', () =>{
+    mainScreen.textContent = mainScreen.textContent * (-1);
+});
