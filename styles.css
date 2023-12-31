@@ -11,6 +11,10 @@ body{
     min-height: 10vh;
 }
 
+#inputs, #result {
+    min-height: 2.5vh;
+}
+
 #result{
     background: slategray;
     font-size: 20px;
@@ -35,40 +39,29 @@ body{
 #container {
     margin: 15vh;
     background-color: steelblue;
-    min-height: 70vh;
-    min-width: 25vw;
+    height: 50vh;
+    width: 25vw;
 }
 
 .row {
     display: flex;
     justify-content: center;
-    
 }
 
 .number {
     background: grey;
-    min-height: 50px;
-    min-width: 50px;
 }
 
-.tool {
+.tool, .action {
     background: darkgrey;
-    min-height: 50px;
-    min-width: 50px;
-}
-
-.action {
-    background: darkgrey;
-    min-height: 50px;
-    min-width: 50px;
 }
 
 .operator {
-    background: gray;
-    min-height: 50px;
-    min-width: 50px;
+    background: rgb(108, 139, 128);
 }
 
 button {
-    padding: 10px
+    padding: 10px;
+    min-height: 50px;
+    min-width: 50px;
 }

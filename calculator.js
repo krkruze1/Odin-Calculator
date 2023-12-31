@@ -18,7 +18,7 @@ const division = (a,b) => a / b;
 //Operation
 let input1 = 0;
 let input2 = 0;
-let operator;
+let operator = '';
 let answer = 0;  
 function operate(){
     if (operator === 'addition'){
@@ -70,10 +70,14 @@ opBtns.forEach((btn) => {
 let eqBtn = document.querySelector('#equals');
 
 eqBtn.addEventListener('click', () =>{
+    if (operator === '') {
+        inputs.textContent = '';
+    };
     input2 = mainScreen.textContent;
     inputs.textContent += input2;
     mainScreen.textContent = operate();
     answer = 1;
+    operator = '';
 });
 
 //System Operations
