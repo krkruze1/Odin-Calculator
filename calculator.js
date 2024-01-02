@@ -28,7 +28,9 @@ function operate(){
     } else if (operator === 'multiplication') {
         return multiplication(input1,input2)
     } else if (operator === 'division'){
-        return division(input1,input2)
+        if (input2 === '0') {
+            return "Uh-Oh!!! you've opened a black hole!";
+        } else return division(input1,input2);
     };
 };
 
@@ -46,6 +48,16 @@ numBtns.forEach((btn) => {
     });
 });
 
+let  decBtn = document.querySelector('.tool');
+
+decBtn.addEventListener('click', () => {
+    if (answer === 1) {
+        mainScreen.textContent = '';
+        answer = 0;}
+    if (!mainScreen.textContent.includes('.')) {
+        mainScreen.textContent += decBtn.id.slice(-1)
+    };
+});
 //Mathematical Operation Buttons
 //on click:
 //1. let input 1 = main screen input 
