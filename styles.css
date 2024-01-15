@@ -9,26 +9,17 @@ body{
 #screen {
     width: auto;
     min-height: 10vh;
+    padding: 2.5px;
 }
 
-#inputs, #result {
-    min-height: 2.5vh;
-}
-
-#result{
+#inputs, #mainscreen {
+    display:flex;
+    min-height: 5vh;
     background: slategray;
-    font-size: 20px;
-    padding: 10px;
-    margin: 10px;
-    border: solid 5px red;
-}
-
-#inputs{
-    background: slategray;
-    font-size: 24px;
-    padding: 10px;
-    margin: 10px;
-    border: solid 5px red;
+    font-size: 4vh;
+    margin: 5px;
+    border: solid 3px navy;
+    align-items: center;
 }
 
 #buttons {
@@ -39,8 +30,9 @@ body{
 #container {
     margin: 15vh;
     background-color: steelblue;
-    height: 50vh;
+    min-height: 50vh;
     width: 25vw;
+    padding: 1vh;
 }
 
 .row {
@@ -62,6 +54,6 @@ body{
 
 button {
     padding: 10px;
-    min-height: 50px;
-    min-width: 50px;
+    min-height: 7vh;
+    min-width: 7vh;
 }

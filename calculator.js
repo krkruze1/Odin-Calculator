@@ -3,7 +3,7 @@
 //Input
 const inputs = document.querySelector('#inputs')
 //Result
-const mainScreen = document.querySelector('#result')
+const mainScreen = document.querySelector('#mainscreen')
 
 //Mathematical Operations
 //Add
@@ -15,11 +15,15 @@ const multiplication = (a,b) => a * b;
 //Divide
 const division = (a,b) => a / b;
 //
-//Operation
+//Variable list
 let input1 = 0;
 let input2 = 0;
 let operator = '';
-let answer = 0;  
+let opSign='';
+let answer = 0;
+
+//Function list
+
 function operate(){
     if (operator === 'addition'){
         return addition(input1,input2)
@@ -34,6 +38,16 @@ function operate(){
     };
 };
 
+function clearAll(){
+    mainScreen.textContent = '';
+    inputs.textContent = '';
+    input1 = 0;
+    input2 = 0;
+    answer = 0;  //is there an answer on MainScreen 
+    operator = '';
+    opSign = '';
+};
+
 //Number Buttons and decimal point
 //on click add digit to main screen input
 
@@ -42,9 +56,14 @@ let numBtns = document.querySelectorAll('.number');
 numBtns.forEach((btn) => {
     btn.addEventListener('click', () => {
         if (answer === 1) {
-            mainScreen.textContent = '';
-            answer = 0;}
-        mainScreen.textContent += btn.id.slice(-1)
+            clearAll();
+        };
+        if (mainScreen.textContent.length < 10) {
+            mainScreen.textContent += btn.id.slice(-1);
+        } else { 
+            mainScreen.textContent = Number(mainScreen.textContent).toPrecision(10);
+        }
+
     });
 });
 
@@ -52,8 +71,8 @@ let  decBtn = document.querySelector('.tool');
 
 decBtn.addEventListener('click', () => {
     if (answer === 1) {
-        mainScreen.textContent = '';
-        answer = 0;}
+        clearAll();
+    };
     if (!mainScreen.textContent.includes('.')) {
         mainScreen.textContent += decBtn.id.slice(-1)
     };
@@ -69,12 +88,31 @@ let opBtns = document.querySelectorAll('.operator');
 
 opBtns.forEach((btn) => {
     btn.addEventListener('click', () => {
-        inputs.textContent='';
-        input1 = mainScreen.textContent;
-        inputs.textContent += input1 + ' ' + btn.textContent + ' ';
-        mainScreen.textContent= '';
-        operator = btn.id;
-    });
+        if (mainScreen.textContent === '' && operator !== '') {
+            operator = btn.id;
+            opSign = btn.textContent;
+            inputs.textContent = input1 + ' ' + opSign;
+        } else if (operator === ''){
+            inputs.textContent='';
+            input1 = Number(mainScreen.textContent);
+            opSign = btn.textContent;
+            inputs.textContent += input1 + ' ' + opSign;
+            mainScreen.textContent= '';
+            input2 = '';
+            operator = btn.id;
+    }   else {
+            input1 = operate();
+            input2 = Number(mainScreen.textContent);
+            opSign = btn.textContent;
+            inputs.textContent = input1 + ' ' + opSign;
+            mainScreen.textContent = '';
+            answer = 0;    
+            operator = btn.id;
+    };
+        if (mainScreen.textContent.length >= 8) {
+        mainScreen.textContent = Number(mainScreen.textContent).toPrecision(7)
+    };
+});
 });
 
 //Equals
@@ -83,13 +121,21 @@ let eqBtn = document.querySelector('#equals');
 
 eqBtn.addEventListener('click', () =>{
     if (operator === '') {
-        inputs.textContent = '';
+        inputs.textContent = mainScreen.textContent;
+        answer = 1;
+    } else if (answer === 1) {
+        input1 = Number(mainScreen.textContent);
+        inputs.textContent = input1 + '' + opSign + '' + input2;
+        mainScreen.textContent = operate();
+    } else {
+        input2 = Number(mainScreen.textContent);
+        inputs.textContent += ' ' + input2;
+        mainScreen.textContent = operate();
+        answer = 1;
     };
-    input2 = mainScreen.textContent;
-    inputs.textContent += input2;
-    mainScreen.textContent = operate();
-    answer = 1;
-    operator = '';
+    if (mainScreen.textContent.length >= 8) {
+        mainScreen.textContent = Number(mainScreen.textContent).toPrecision(7)
+    };
 });
 
 //System Operations
@@ -102,14 +148,7 @@ eqBtn.addEventListener('click', () =>{
 
 let acBtn = document.querySelector('#clearAll');
 
-acBtn.addEventListener('click', () =>{
-    mainScreen.textContent = '';
-    inputs.textContent = '';
-    input1 = 0;
-    input2 = 0;
-    answer = 0;
-    operator = '';
-});
+acBtn.addEventListener('click', clearAll);
 
 //Clear Entry
 //on click clear main screen 
@@ -127,7 +166,6 @@ let delBtn = document.querySelector('#delete');
 delBtn.addEventListener('click', () =>{
     mainScreen.textContent = mainScreen.textContent.slice(0,(mainScreen.textContent.length - 1));
 });
-
 
 //Switch Sign
 // on click main screen input shanges from positive to negative and vice versa
