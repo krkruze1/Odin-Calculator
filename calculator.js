@@ -78,31 +78,33 @@ decBtn.addEventListener('click', () => {
     };
 });
 //Mathematical Operation Buttons
-//on click:
-//1. let input 1 = main screen input 
-//2. replace inputs screen with input 1 with operator 
-//3. clear main screen input
-//4. set operation
 
 let opBtns = document.querySelectorAll('.operator');
 
 opBtns.forEach((btn) => {
-    btn.addEventListener('click', () => {
-        if (mainScreen.textContent === '' && operator !== '') {
+    btn.addEventListener('click', () => {        
+        if (mainScreen.textContent === '' && operator !== '') {//purpose: changes operator
             operator = btn.id;
             opSign = btn.textContent;
-            inputs.textContent = input1 + ' ' + opSign;
-        } else if (operator === ''){
+            inputs.textContent = input1 + ' ' + opSign;        
+        } else if (operator === ''){// first time operation
             inputs.textContent='';
             input1 = Number(mainScreen.textContent);
             opSign = btn.textContent;
             inputs.textContent += input1 + ' ' + opSign;
-            mainScreen.textContent= '';
+            mainScreen.textContent = '';
             input2 = '';
             operator = btn.id;
-    }   else {
-            input1 = operate();
+    }   else if (answer === 1){//chain operation after equals
+            input1 = Number(mainScreen.textContent);
+            inputs.textContent = input1 + ' ' + opSign;
+            opSign = btn.textContent;
+            operator = btn.id;
+            mainScreen.textContent = '';
+            answer = 0
+    }   else {//chain operations without equals
             input2 = Number(mainScreen.textContent);
+            input1 = operate();
             opSign = btn.textContent;
             inputs.textContent = input1 + ' ' + opSign;
             mainScreen.textContent = '';
@@ -116,18 +118,18 @@ opBtns.forEach((btn) => {
 });
 
 //Equals
-//on click run operate
+//on click run operate depending on conditions
 let eqBtn = document.querySelector('#equals');
 
 eqBtn.addEventListener('click', () =>{
-    if (operator === '') {
+    if (operator === '') {//no operation selected
         inputs.textContent = mainScreen.textContent;
         answer = 1;
-    } else if (answer === 1) {
+    } else if (answer === 1) {//purpose: reuses operator and last input
         input1 = Number(mainScreen.textContent);
         inputs.textContent = input1 + '' + opSign + '' + input2;
         mainScreen.textContent = operate();
-    } else {
+    } else {//runs operation on given inputs and operator
         input2 = Number(mainScreen.textContent);
         inputs.textContent += ' ' + input2;
         mainScreen.textContent = operate();
